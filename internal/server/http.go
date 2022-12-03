@@ -1,7 +1,12 @@
 package server
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
 
 func NewHttpServer(addr string) *http.Server {
-	httpServer := newHttpServer()
+	r := mux.Router()
+	return &http.Server{}
 }
