@@ -1,3 +1,6 @@
-export GOROOT=/Users/abhatia/.goenv/versions/1.18.2
-export GOPATH=/Users/abhatia/go/1.18.2
+export GOVERSION=1.18.2
+
+# setup GO VARS
+export GOROOT=~/.goenv/versions/$GOVERSION
+export GOPATH=~/go/$GOVERSION
 export PATH=$GOROOT/bin:$PATH
