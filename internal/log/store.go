@@ -55,5 +55,39 @@ func (s *store) Append(b []byte) (n uint64, pos uint64, err error) {
 }
 
 func (s *store) Read(pos uint64) ([]byte, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if err := s.buf.Flush(); err != nil {
+		return nil, err
+	}
+	// Get size of the log record at the pos of length
+	sizeByte := make([]byte, lenWidth)
+	if _, err := s.File.ReadAt(sizeByte, int64(pos)); err != nil {
+		return nil, err
+	}
+	// Convert size into big endian
+	size := enc.Uint64(sizeByte)
+	data := make([]byte, size)
+	if _, err := s.File.ReadAt(data, int64(pos+lenWidth)); err != nil {
+		return nil, err
+	}
+	return data, nil
+}
 
+func (s *store) ReadAt(p []byte, off int64) (n int, err error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if err = s.buf.Flush(); err != nil {
+		return 0, err
+	}
+	return s.File.ReadAt(p, off)
+}
+
+func (s *store) Close() error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if err := s.buf.Flush(); err != nil {
+		return err
+	}
+	return s.File.Close()
 }
