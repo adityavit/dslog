@@ -112,7 +112,13 @@ func (bigEndian) PutUint32(b []byte, v uint32) {  // v => x0A0B0C0D
 ```
 
 * How to use the `binary` package to encode different values into bytes?
-* How to use the `bufio` package to write and read date from the file using buffer?
+* How to use the `bufio` package to write and read data from the file using buffer?
+* What is mmap file? How mmap is used, what are the common API's?
+* Why index file is truncated before loading in the memory as mmap? 
+* Why offset in the index are used as relative offset? Or why the offset is stored as 4 bytes? 
+* What is the difference between `sync.Mutex` and `sync.RWMutex`? When to use RWMutex over Mutex?
+* Implement the io.Reader and io.Writer interface in golang on a string buffer.
+* 
 
 
 
