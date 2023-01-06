@@ -8,4 +8,8 @@ generate:
 
 .PHONY: test
 test:
-	go test -race ./...
+	go test -v -race ./...
+
+.PHONY: vet
+vet:
+	go vet ./...
