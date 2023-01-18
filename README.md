@@ -118,7 +118,16 @@ func (bigEndian) PutUint32(b []byte, v uint32) {  // v => x0A0B0C0D
 * Why offset in the index are used as relative offset? Or why the offset is stored as 4 bytes? 
 * What is the difference between `sync.Mutex` and `sync.RWMutex`? When to use RWMutex over Mutex?
 * Implement the io.Reader and io.Writer interface in golang on a string buffer.
+
+# Chapter 4
+
+* What are some of the challenges when building distributed service APIs?
+  * The main two challenges which come across when designing distributed APIs' are
+    * Maintaining compatibility between different versions of the API's between client and server. In gRPC this is done by versioning the API. 
+      So that older clients can still work with the API's.
+    * Maintaining performance between the server and client. At the API level gRPC reduce overhead in marshalling and unmarshalling and connection time between server and client.
 * 
+
 
 
 
