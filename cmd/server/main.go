@@ -7,7 +7,7 @@ import (
 
 func main() {
 	ser := server.NewHttpServer(":8080")
-	log.Println("Stating http server @", ser.Addr)
+    log.Println("Starting http server @", ser.Addr)
 	err := ser.ListenAndServe()
 	if err != nil {
 		log.Fatal("Unable to start server!")
